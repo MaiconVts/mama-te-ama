@@ -1,13 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TE AMO</title>
+  <link rel="stylesheet" href="./assets/css/te-amo.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
 </head>
+
 <body>
-    <header class="header"></header>
-    <main class="main">Te amo</main>
-    <footer class="footer"></footer>
+  <header class="header-principal">
+    <h1 class="titulo-superior">Nossa História</h1>
+
+    <div class="container-fluid fotos-container">
+      <div class="foto-wrapper foto-top-left">
+        <img src="assets/img/fotos/foto-1-1.jpg" alt="" class="img-fluid" />
+      </div>
+
+      <div class="foto-wrapper foto-top-right">
+        <img src="assets/img/fotos/foto-1-2.jpg" alt="" class="img-fluid" />
+      </div>
+
+      <div class="foto-wrapper foto-center-bottom">
+        <img src="assets/img/fotos/foto-1-3.jpg" alt="" class="img-fluid" />
+      </div>
+    </div>
+    <h2 class="titulo-inferior">Momentos que se tornaram eternos</h2>
+  </header>
+
+  <main>
+    <section class="memory-section py-5">
+      <div class="container">
+        <div class="row align-items-center justify-content-center">
+
+          <div class="col-md-4">
+            <div id="player-card-1" class="player-card-spotify">
+
+              <div class="album-art">
+                <img id="album-art-img-1" src="assets/img/fotos/foto-2-1.jpg" alt="Foto do casal para a música">
+              </div>
+
+              <div class="progress-bar-container">
+                <div class="progress-bar-background">
+                  <div id="progress-bar-fill-1" class="progress-bar-fill"></div>
+                </div>
+                <div class="time-container">
+                  <span id="current-time-1">0:00</span>
+                  <span id="total-duration-1">0:00</span>
+                </div>
+              </div>
+
+              <div class="song-info">
+                <h4 class="song-title">Nossa Canção</h4>
+                <p class="song-artist">Um momento especial</p>
+              </div>
+
+              <div class="controls-container">
+                <button id="prev-btn-1" class="btn-control secondary"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                    height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="19 20 9 12 19 4 19 20"></polygon>
+                    <line x1="5" y1="19" x2="5" y2="5"></line>
+                  </svg></button>
+
+                <button id="play-pause-btn-1" class="btn-control primary">
+                  <svg id="play-icon-1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                    fill="currentColor" stroke="currentColor" stroke-width="1">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                  <svg id="pause-icon-1" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="32"
+                    height="32" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1">
+                    <rect x="6" y="4" width="4" height="16"></rect>
+                    <rect x="14" y="4" width="4" height="16"></rect>
+                  </svg>
+                </button>
+
+                <button id="next-btn-1" class="btn-control secondary"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                    height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="5 4 15 12 5 20 5 4"></polygon>
+                    <line x1="19" y1="5" x2="19" y2="19"></line>
+                  </svg></button>
+              </div>
+
+              <audio id="player-musica-1" src="assets/audio/home-edward-shape-&-the-magnetic-zeros.mp3"></audio>
+            </div>
+          </div>
+
+          <div class="col-md-7 mt-5 mt-md-0">
+            <div class="foto-pano-wrapper">
+              <img src="assets/img/fotos/foto-2-2.jpg" alt="Descrição da foto da memória" class="img-fluid">
+            </div>
+            <div class="texto-memoria mt-4 text-md-start text-center">
+              <h2 class="display-4">Um Brinde a Nós</h2>
+              <p class="lead">Lembrança daquela noite especial que marcou o início de tudo.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="memory-section py-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-10">
+
+            <div class="composition-container">
+
+              <div class="composition-item foto-comp-1">
+                <img src="assets/img/fotos/foto-3-1.jpg" alt="Descrição da foto de cima">
+              </div>
+
+              <div class="composition-item texto-comp-1">
+                <h2>O Início de Tudo</h2>
+                <p>Aquela foto que captura perfeitamente como tudo começou, cheia de sorrisos e expectativas.</p>
+              </div>
+
+              <div class="composition-item foto-comp-2">
+                <img src="assets/img/fotos/foto-3-2.jpg" alt="Descrição da foto de baixo">
+              </div>
+
+              <div class="composition-item texto-comp-2">
+                <h2>Nossa Cumplicidade</h2>
+                <p>E aqui, a prova de que a nossa sintonia só cresceu. Cada olhar e cada gesto mostram a força da nossa
+                  conexão.</p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="memory-section py-5">
+      <div class="container">
+
+        <div class="row align-items-center justify-content-center">
+
+          <div class="col-md-7">
+            <div class="foto-com-titulo-container">
+              <img src="assets/img/fotos/foto-4-1.jpg" alt="Foto de um momento especial">
+              <div class="titulo-sobre-foto">
+                <h2>Nosso Refúgio</h2>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-5 mt-4 mt-md-0">
+
+            <div id="player-card-2" class="player-card-spotify">
+
+              <div class="album-art">
+                <img id="album-art-img-2" src="assets/img/fotos/foto-2-1.jpg" alt="Foto do casal para a música">
+              </div>
+
+              <div class="progress-bar-container">
+                <div class="progress-bar-background">
+                  <div id="progress-bar-fill-2" class="progress-bar-fill"></div>
+                </div>
+                <div class="time-container">
+                  <span id="current-time-2">0:00</span>
+                  <span id="total-duration-2">0:00</span>
+                </div>
+              </div>
+
+              <div class="song-info">
+                <h4 class="song-title">A Paz que Você Traz</h4>
+                <p class="song-artist">Trilha sonora dos nossos dias</p>
+              </div>
+
+              <div class="controls-container">
+                <button id="prev-btn-2" class="btn-control secondary"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                    height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="19 20 9 12 19 4 19 20"></polygon>
+                    <line x1="5" y1="19" x2="5" y2="5"></line>
+                  </svg></button>
+
+                <button id="play-pause-btn-2" class="btn-control primary">
+                  <svg id="play-icon-2" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                    fill="currentColor" stroke="currentColor" stroke-width="1">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                  <svg id="pause-icon-2" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="32"
+                    height="32" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1">
+                    <rect x="6" y="4" width="4" height="16"></rect>
+                    <rect x="14" y="4" width="4" height="16"></rect>
+                  </svg>
+                </button>
+
+                <button id="next-btn-2" class="btn-control secondary"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                    height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="5 4 15 12 5 20 5 4"></polygon>
+                    <line x1="19" y1="5" x2="19" y2="19"></line>
+                  </svg></button>
+              </div>
+
+              <audio id="player-musica-2" src="assets/audio/Ben E. King - Stand By Me (Audio).mp3"></audio>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="row justify-content-center mt-5">
+          <div class="col-12 col-lg-10">
+            <div class="descricao-expandida">
+              <p>Existem momentos que se tornam o nosso lugar seguro, e este foi um deles. Lembro da sensação de
+                tranquilidade, de como o mundo parece parar e tudo que importa está exatamente aqui. Cada detalhe deste
+                dia está guardado na memória, como uma canção que a gente nunca se cansa de ouvir.</p>
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+  <script src="./assets/js/te-amo.js"></script>
 </body>
+
 </html>
