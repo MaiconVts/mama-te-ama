@@ -435,3 +435,92 @@ body {
     text-align: center;
     padding: 2rem 0; /* Espaçamento vertical */
 }
+
+/* --------------------------------------------------------
+   7. SEÇÃO DE FOTOS EM ESCADA (INVERTIDA) - CÓDIGO CORRIGIDO
+   -------------------------------------------------------- */
+
+/* --- O "Palco" para as fotos --- */
+/* (Reutilizamos a classe .escada-fotos-container da primeira seção) */
+.escada-fotos-container {
+    position: relative; /* ESSENCIAL: O ponto de referência para as fotos */
+    width: 100%;
+    aspect-ratio: 1 / 1.2; /* Proporção do palco (largura / altura) */
+}
+
+/* --- Estilo Base para as Fotos da Escada Invertida --- */
+.foto-escada-invertida {
+    position: absolute; /* ESSENCIAL: Permite o posicionamento livre e sobreposto */
+    border-radius: 0.75rem;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    
+    /* Agora a div da foto também é um ponto de referência para o título dentro dela */
+    position: relative;
+}
+
+.foto-escada-invertida img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.foto-escada-invertida:hover {
+    transform: scale(1.02);
+    z-index: 10 !important; /* Traz a foto para frente ao passar o mouse */
+}
+
+
+/* --- Posicionamento Individual (A Lógica Correta) --- */
+.foto-escada-3 {
+    /* Foto de Baixo */
+    position: absolute; /* Garante a sobreposição */
+    bottom: 0%;
+    left: 0;
+    width: 70%;
+    height: 65%;
+    z-index: 1; /* Fica atrás */
+}
+
+.foto-escada-4 {
+    /* Foto de Cima */
+    position: absolute; /* Garante a sobreposição */
+    top: 0;
+    right: 0;
+    width: 80%;
+    height: 60%;
+    z-index: 2; /* Fica na frente */
+}
+
+
+/* --- Títulos Sobrepostos (A Mágica da Legibilidade) --- */
+.titulo-sobreposto {
+    position: absolute; /* Posiciona o título em relação à 'div' da foto */
+    left: 0;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    z-index: 5; /* Garante que o título fique acima da imagem */
+    transition: opacity 0.3s ease; /* Efeito suave de aparição */
+}
+
+.titulo-sobreposto h2 {
+    font-family: var(--fonte-titulo);
+    color: white;
+    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* Modificador para o título que fica no TOPO da imagem */
+.titulo-sobreposto.topo {
+    top: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
+}
+
+/* Modificador para o título que fica na BASE da imagem */
+.titulo-sobreposto.base {
+    bottom: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+    text-align: right;
+}
