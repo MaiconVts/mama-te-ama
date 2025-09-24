@@ -725,7 +725,82 @@ body {
      em telas pequenas. O layout se torna majoritariamente vertical.
    -------------------------------------------------------- */
 @media (max-width: 767px) {
-  /* --- Ajustes Gerais --- */
+  /* --- Ajuste Geral do Header --- */
+  .header-principal {
+    /* Garante que o conteúdo tenha espaço para se mover */
+    justify-content: space-around;
+    padding-top: 6rem; /* Mais espaço no topo */
+    padding-bottom: 6rem; /* Mais espaço na base */
+  }
+
+  /* --- AJUSTE DOS TÍTULOS (A CORREÇÃO PRINCIPAL) --- */
+  .titulo-superior,
+  .titulo-inferior {
+    position: static; /* Tira o posicionamento absoluto, colocando-os no fluxo normal */
+    transform: none; /* Reseta a transformação */
+    width: 100%; /* Ocupa a largura total disponível */
+    left: auto; /* Reseta posicionamento horizontal */
+    top: auto; /* Reseta posicionamento vertical */
+    bottom: auto;
+    animation: none; /* Desliga a animação de entrada para simplicidade */
+    opacity: 1; /* Garante que esteja visível */
+  }
+
+  .titulo-superior {
+    font-size: clamp(2.2rem, 10vw, 3.5rem);
+    /* A ordem no HTML agora importa. Este vem primeiro. */
+  }
+
+  .titulo-inferior {
+    font-size: clamp(1.4rem, 6vw, 1.8rem);
+    /* A ordem no HTML agora importa. Este virá depois do container de fotos. */
+  }
+
+  /* --- Ajuste no Mosaico de Fotos --- */
+  .fotos-container {
+    height: 50vh; /* Altura do palco reduzida para caber na tela */
+    min-height: 300px;
+    width: 95vw;
+    order: 0; /* Garante a ordem correta no flexbox, se necessário */
+  }
+
+  .foto-wrapper {
+    border-width: 3px;
+    box-shadow: 0 8px 15px -3px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Posições ajustadas para o palco menor */
+  .foto-top-left {
+    width: 48vw;
+    height: 60vw;
+    max-width: 180px;
+    max-height: 240px;
+    left: 0;
+    top: 15%;
+    transform: rotate(-10deg);
+  }
+
+  .foto-top-right {
+    width: 45vw;
+    height: 58vw;
+    max-width: 170px;
+    max-height: 230px;
+    right: 2%;
+    top: 10%;
+    transform: rotate(12deg);
+  }
+
+  .foto-center-bottom {
+    width: 55vw;
+    height: 68vw;
+    max-width: 210px;
+    max-height: 280px;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%) rotate(-3deg);
+  }
+
+  /* --- OUTROS AJUSTES RESPONSIVOS (JÁ EXISTENTES) --- */
   .memory-section {
     /* Garante que o alinhamento funcione bem quando as colunas empilham */
     align-items: flex-start;
