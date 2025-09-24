@@ -1,98 +1,95 @@
 /* Reset Básico */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body, html {
-    height: 100%;
+body,
+html {
+  height: 100%;
 }
 
 /* --- 1. O AMBIENTE (Fundo Escuro e Focado) --- */
 .container-entrada {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative; 
-    overflow: hidden; /* Garante que nada "vaze" da tela */
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden; /* Garante que nada "vaze" da tela */
 
-    /* * SUBSTITUÍMOS a animação cônica por um gradiente radial estático.
-     * Ele cria uma "vinheta" escura, forçando o olhar para o centro,
-     * exatamente onde o botão está. É muito mais elegante.
-     */
-    background: radial-gradient(circle, #960000, #4d0000, #3d0909e8 85%);
+  background-color: var(--cor-fundo);
+  background-image: url("../img/background/blob-background.png");
+  background-size: cover;
+  background-position: center;
 }
-
 
 /* --- 2. O BOTÃO (A Estrela Principal) --- */
 .container-entrada > button {
-    /* Base */
-    font-family: 'Playfair Display', serif; /* Adicionei a fonte para mais elegância */
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: white;
-    padding: 20px 45px;
-    border-radius: 50px;
-    cursor: pointer;
-    position: relative; 
-    z-index: 10;
+  /* Base */
+  font-family: "Playfair Display", serif; /* Adicionei a fonte para mais elegância */
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  padding: 20px 45px;
+  border-radius: 50px;
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
 
-    /* Visual */
-    background: linear-gradient(45deg, #f72020, #960000);
-    border: 2px solid rgba(255, 255, 255, 0.7);
-    text-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
-    box-shadow: 
-        inset 0 -3px 5px rgba(0, 0, 0, 0.),
-        0 0 10px rgba(0, 0, 0, 0.8); /* Sombra externa suave */
-    
-    /* Transição suave para o hover */
-    transition: transform 0.3s ease;
+  /* Visual */
+  background: linear-gradient(45deg, #f72020, #960000);
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
+  box-shadow: inset 0 -3px 5px rgba(0, 0, 0, 0), 0 0 10px rgba(0, 0, 0, 0.8); /* Sombra externa suave */
+
+  /* Transição suave para o hover */
+  transition: transform 0.3s ease;
 }
-
 
 /* --- 3. A AURA DE LUZ (Efeito Refinado) --- */
 .container-entrada > button::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    
-    /* A fonte da luz, usando as cores mais vibrantes */
-    background: radial-gradient(circle, #f72020, #ff0909);
-    
-    z-index: -1;
-    filter: blur(40px);
-    
-    /* * NOVA ANIMAÇÃO: Mais sutil e elegante.
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  /* A fonte da luz, usando as cores mais vibrantes */
+  background: radial-gradient(circle, #f72020, #ff0909);
+
+  z-index: -1;
+  filter: blur(40px);
+
+  /* * NOVA ANIMAÇÃO: Mais sutil e elegante.
      * Em vez de "pular" com o 'scale', a luz agora "respira" com 'opacity'.
      * O resultado é muito mais suave.
      */
-    animation: brilhoSutil 4s infinite ease-in-out;
+  animation: brilhoSutil 4s infinite ease-in-out;
 }
-
 
 /* Efeito de HOVER simples e direto */
 .container-entrada > button:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 /* 4. A NOVA ANIMAÇÃO da aura */
 @keyframes brilhoSutil {
-    0% {
-        opacity: 0.6;
-    }
-    25% {
-        opacity: 0.8; /* A luz começa a aumentar... */
-    }   
-    50% {
-        opacity: 1; /* A luz fica mais intensa... */
-    }
-    75% {
-        opacity: 0.8; /* ...diminui um pouco... */
-    }
-    100% {
-        opacity: 0.6; /* ...e depois volta ao normal. */
-    }
+  0% {
+    opacity: 0.6;
+  }
+  25% {
+    opacity: 0.8; /* A luz começa a aumentar... */
+  }
+  50% {
+    opacity: 1; /* A luz fica mais intensa... */
+  }
+  75% {
+    opacity: 0.8; /* ...diminui um pouco... */
+  }
+  100% {
+    opacity: 0.6; /* ...e depois volta ao normal. */
+  }
 }

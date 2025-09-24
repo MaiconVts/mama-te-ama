@@ -8,119 +8,139 @@
    -------------------------------------------------------- */
 
 /* --- Variáveis de Design (Cores e Fontes) --- */
+@import url("https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Outfit:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Young+Serif&display=swap");
+
 :root {
-    --cor-fundo: #fdfbf5;
-    --cor-texto: #333333;
-    --cor-vinho: #8b0000;
-    --cor-dourado: #d4af37;
-    --cor-rosa: #d9a9a9;
-    --fonte-titulo: "Playfair Display", serif;
-    --fonte-texto: "Raleway", sans-serif;
-    --fonte-detalhe: "Dancing Script", cursive;
+  --cor-fundo: #fdfbf5;
+  --cor-texto: #333333;
+  --cor-vinho: #8b0000;
+  --cor-dourado: #d4af37;
+  --cor-rosa: #d9a9a9;
+  --fonte-titulo: "Playfair Display", serif;
+  --fonte-texto: "Raleway", sans-serif;
+  --fonte-detalhe: "Cedarville Cursive", cursive;
 }
 
 /* --- Estilos de Base (Reset e Padrões) --- */
 body {
-    font-family: var(--fonte-texto);
-    background-color: var(--cor-fundo);
-    color: var(--cor-texto);
+  font-family: var(--fonte-texto);
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
 }
 
-
-/* --------------------------------------------------------
-   2. HEADER (CABEÇALHO COM MOSAICO)
-   - Estilos para a primeira seção da página.
-   -------------------------------------------------------- */
+/* ========================================================
+   2. HEADER COM MOSAICO FLUTUANTE (LAYOUT EXPANDIDO)
+   ======================================================== */
 
 /* --- O Contêiner Principal do Header --- */
 .header-principal {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column; /* Empilha os filhos: título, fotos, subtítulo */
-    justify-content: center;
-    align-items: center;
-    padding: 4rem 1rem; /* Espaçamento interno (vertical e horizontal) */
-    overflow: hidden;
+  /* A MUDANÇA PRINCIPAL: Aumentamos a altura mínima. */
+  /* Agora ele tem 120% da altura da tela, empurrando o conteúdo seguinte para baixo. */
+  min-height: 120vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+  position: relative;
+  background-color: var(--cor-fundo);
+  background-image: url("../img/background/blob-background.png");
+  background-size: cover;
+  background-position: center;
 }
 
-/* --- Títulos do Header --- */
+/* --- Títulos do Header (ajustados para o novo espaço) --- */
 .titulo-superior {
-    font-family: var(--fonte-titulo);
-    color: var(--cor-vinho);
-    font-weight: 700;
-    /* Fonte responsiva: se ajusta à tela, com limites min/max */
-    font-size: clamp(2.5rem, 8vw, 6rem);
-    text-align: center;
-    margin-bottom: 8rem;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 1%; /* Um pouco mais para baixo, aproveitando o espaço extra. */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  font-family: var(--fonte-titulo);
+  color: var(--cor-vinho);
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  text-align: left;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  will-change: transform, opacity;
+  animation: fadeInText 1s 0.5s ease-out backwards;
 }
 
 .titulo-inferior {
-    font-family: var(--fonte-detalhe); 
-    color: var(--cor-texto);
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
-    text-align: center;
-    margin-top: 6rem;
-    font-weight: 500;
+  position: absolute;
+  bottom: 1%; /* Um pouco mais para cima, aproveitando o espaço extra. */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  font-family: var(--fonte-detalhe);
+  color: var(--cor-texto);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  text-align: center;
+  will-change: transform, opacity;
+  animation: fadeInText 1s 0.8s ease-out backwards;
 }
 
-/* --- Mosaico de Fotos (dentro do Header) --- */
+/* --- Mosaico de Fotos (O "Palco") --- */
+/* Agora com mais espaço, podemos aumentar um pouco sua altura. */
 .fotos-container {
-    position: relative;
-    width: 90vw;
-    max-width: 1100px; /* Limita o tamanho máximo em telas grandes */
-    height: 60vh;   /* Altura relativa à tela */
+  position: relative;
+  width: 90vw;
+  max-width: 900px;
+  height: 90vh; /* Aumentamos a altura do palco. */
+  min-height: 500px;
 }
 
-/* Estilo base para cada foto no mosaico */
+/* --- Estilo Base para as Fotos --- */
 .foto-wrapper {
-    position: absolute;
-    overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: absolute;
+  overflow: hidden;
+  box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  border: 4px solid white;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
-
 .foto-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
-    display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
-
 .foto-wrapper:hover {
-    /* Efeito de destaque ao passar o mouse */
-    transform: scale(1.03) rotate(0deg) !important;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-    z-index: 20 !important;
+  transform: scale(1.05) rotate(0deg) !important;
+  box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.3);
+  z-index: 20 !important;
 }
 
-/* Posicionamento individual de cada foto no mosaico */
+/* --- Posicionamento Individual (Ajustado para o novo espaço) --- */
+/* Com mais espaço, podemos centralizar melhor e usar tamanhos mais generosos */
 .foto-top-left {
-    width: 30vw; height: 40vw;
-    max-width: 350px; max-height: 450px;
-    top: 13%; left: 0;
-    transform: translate(-10%, -10%) rotate(-8deg);
-    z-index: 3;
+  width: 28vw;
+  height: 38vw;
+  max-width: 320px;
+  max-height: 430px;
+  top: 10%;
+  left: 8%; /* Mais para o centro */
+  transform: rotate(-8deg);
+  z-index: 3;
 }
-
 .foto-top-right {
-    width: 35vw; height: 45vw;
-    max-width: 350px; max-height: 450px;
-    top: 10%; right: 1%;
-    transform: translate(10%, -10%) rotate(10deg);
-    z-index: 4;
+  width: 30vw;
+  height: 40vw;
+  max-width: 340px;
+  max-height: 450px;
+  top: 5%;
+  right: 1%; /* Mais para o centro */
+  transform: rotate(10deg);
+  z-index: 4;
 }
-
 .foto-center-bottom {
-    width: 40vw; height: 55vw;
-    max-width: 400px; max-height: 550px;
-    bottom: 0; left: 50%;
-    transform: translate(-50%, 10%) rotate(-3deg);
-    z-index: 5;
+  width: 35vw;
+  height: 45vw;
+  max-width: 400px;
+  max-height: 530px;
+  bottom: 5%;
+  left: 30%;
+  z-index: 5;
 }
-
-
 /* --------------------------------------------------------
    3. SEÇÕES DE MEMÓRIA (PLAYER + CONTEÚDO)
    - Estilos para os blocos que se repetem na página.
@@ -128,35 +148,37 @@ body {
 
 /* --- O Contêiner Principal da Seção --- */
 .memory-section {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background-image: url("../img/background/blob-background.png");
+  background-size: cover;
+  background-position: center;
 }
 
 /* --- Container da Foto Panorâmica --- */
 .foto-pano-wrapper {
-    width: 100%;
-    aspect-ratio: 16 / 10; /* Proporção fotográfica */
-    border-radius: 0.75rem;
-    overflow: hidden;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  aspect-ratio: 16 / 10; /* Proporção fotográfica */
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
 }
 
 .foto-pano-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* --- Títulos e Textos da Seção de Memória --- */
 .texto-memoria h2 {
-    font-family: var(--fonte-titulo);
-    color: var(--cor-vinho);
+  font-family: var(--fonte-titulo);
+  color: var(--cor-vinho);
 }
 .texto-memoria p {
-    font-family: var(--fonte-texto);
+  font-family: var(--fonte-texto);
 }
-
 
 /* --------------------------------------------------------
    4. PLAYER DE MÚSICA (COMPONENTE)
@@ -165,115 +187,115 @@ body {
 
 /* --- O Card Principal --- */
 .player-card-spotify {
-    position: relative;
-    margin: 0 auto;
-    width: 100%;
-    max-width: 340px;
-    padding: 20px;
-    background-color: #1e1e1e;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    color: white;
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 340px;
+  padding: 20px;
+  background-color: #1e1e1e;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  color: white;
 }
 
 /* --- Capa do "Álbum" (A foto) --- */
 .album-art {
-    width: 100%;
-    padding-top: 100%;
-    position: relative;
-    border-radius: 8px;
-    overflow: hidden;
-    margin-bottom: 20px;
+  width: 100%;
+  padding-top: 100%;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
 }
 
 .album-art img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* --- Barra de Progresso e Tempos --- */
 .progress-bar-container {
-    width: 100%;
-    margin-bottom: 10px;
+  width: 100%;
+  margin-bottom: 10px;
 }
 .progress-bar-background {
-    height: 4px;
-    background-color: #404040;
-    border-radius: 2px;
-    cursor: pointer;
+  height: 4px;
+  background-color: #404040;
+  border-radius: 2px;
+  cursor: pointer;
 }
 .progress-bar-fill {
-    width: 0%;
-    height: 100%;
-    background-color: #ffffff;
-    border-radius: 2px;
-    transition: width 0.1s linear;
+  width: 0%;
+  height: 100%;
+  background-color: #ffffff;
+  border-radius: 2px;
+  transition: width 0.1s linear;
 }
 .time-container {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.75rem;
-    color: #b3b3b3;
-    margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #b3b3b3;
+  margin-top: 5px;
 }
 
 /* --- Informações da Música --- */
 .song-info {
-    text-align: left;
-    margin-bottom: 15px;
+  text-align: left;
+  margin-bottom: 15px;
 }
 .song-title {
-    font-family: var(--fonte-titulo);
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin: 0;
-    color: white;
+  font-family: var(--fonte-titulo);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0;
+  color: white;
 }
 .song-artist {
-    font-size: 1rem;
-    color: #b3b3b3;
-    margin: 0;
+  font-size: 1rem;
+  color: #b3b3b3;
+  margin: 0;
 }
 
 /* --- Botões de Controle --- */
 .controls-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 80%;
-    margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
 }
 .btn-control {
-    background: none;
-    border: none;
-    color: #b3b3b3;
-    cursor: pointer;
-    transition: color 0.2s ease;
-    padding: 0;
+  background: none;
+  border: none;
+  color: #b3b3b3;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  padding: 0;
 }
 .btn-control:hover {
-    color: white;
+  color: white;
 }
 .btn-control.primary {
-    background-color: white;
-    color: black;
-    border-radius: 50%;
-    width: 56px;
-    height: 56px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: transform 0.2s ease;
+  background-color: white;
+  color: black;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s ease;
 }
 .btn-control.primary:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 .btn-control svg {
-    display: inline-block;
+  display: inline-block;
 }
 /* --------------------------------------------------------
    5. SEÇÃO DE COMPOSIÇÃO ARTÍSTICA
@@ -282,108 +304,119 @@ body {
 
 /* --- O "Palco" Principal da Composição --- */
 .composition-container {
-    position: relative;
-    width: 100%;
-    /* A altura do palco será 100% da sua largura, criando um quadrado de referência. */
-    aspect-ratio: 1 / 1; 
+  position: relative;
+  width: 100%;
+  /* A altura do palco será 100% da sua largura, criando um quadrado de referência. */
+  aspect-ratio: 1 / 1;
 }
 
 /* --- Estilo Base para TODOS os itens da composição (fotos e textos) --- */
 .composition-item {
-    position: absolute; /* A chave para o posicionamento livre! */
-    transition: transform 0.3s ease;
+  position: absolute; /* A chave para o posicionamento livre! */
+  transition: transform 0.3s ease;
 }
 
 .composition-item:hover {
-    transform: scale(1.03);
-    z-index: 20; /* Garante que o item venha para frente no hover */
+  transform: scale(1.03);
+  z-index: 20; /* Garante que o item venha para frente no hover */
 }
 
 /* --- Estilos e Posicionamentos Individuais --- */
 
 /* Foto de Cima */
 .foto-comp-1 {
-    top: 0;
-    left: 0;
-    width: 45%;
-    height: 60%;
-    border-radius: 0.75rem;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    z-index: 1;
+  top: 0;
+  left: 0;
+  width: 45%;
+  height: 60%;
+  border-radius: 0.75rem;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  z-index: 1;
 }
 .foto-comp-1 img {
-    width: 100%; height: 100%; object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* Texto da Foto de Cima */
 .texto-comp-1 {
-    top: 10%;
-    left: 50%;
-    width: 45%;
-    z-index: 3;
+  top: 10%;
+  left: 50%;
+  width: 45%;
+  z-index: 3;
 }
 
 /* Foto de Baixo */
 .foto-comp-2 {
-    bottom: 0;
-    right: 0;
-    width: 55%;
-    height: 65%;
-    border-radius: 0.75rem;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    z-index: 2; /* Fica por cima da primeira foto */
+  bottom: 0;
+  right: 0;
+  width: 55%;
+  height: 65%;
+  border-radius: 0.75rem;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  z-index: 2; /* Fica por cima da primeira foto */
 }
 .foto-comp-2 img {
-    width: 100%; height: 100%; object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* Texto da Foto de Baixo */
 .texto-comp-2 {
-    bottom: 15%;
-    left: 5%;
-    width: 40%;
-    z-index: 3;
+  bottom: 15%;
+  left: 5%;
+  width: 40%;
+  z-index: 3;
 }
 
 /* Estilo para os textos dentro da composição */
 .composition-item h2 {
-    font-family: var(--fonte-titulo);
-    color: var(--cor-vinho);
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-family: var(--fonte-titulo);
+  color: var(--cor-vinho);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
 }
 
 .composition-item p {
-    font-family: var(--fonte-texto);
-    font-size: clamp(0.9rem, 2vw, 1.1rem);
+  font-family: var(--fonte-texto);
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
 }
-
 
 /* --- RESPONSIVIDADE PARA CELULARES --- */
 @media (max-width: 767px) {
-    /* No celular, abandonamos o posicionamento absoluto para um layout vertical simples */
-    .composition-container {
-        aspect-ratio: auto; /* Desliga a proporção fixa */
-    }
+  /* No celular, abandonamos o posicionamento absoluto para um layout vertical simples */
+  .composition-container {
+    aspect-ratio: auto; /* Desliga a proporção fixa */
+  }
 
-    .composition-item {
-        position: static; /* Volta ao fluxo normal do documento */
-        width: 100%;
-        margin-bottom: 2rem; /* Adiciona espaçamento vertical */
-        text-align: center;
-    }
+  .composition-item {
+    position: static; /* Volta ao fluxo normal do documento */
+    width: 100%;
+    margin-bottom: 2rem; /* Adiciona espaçamento vertical */
+    text-align: center;
+  }
 
-    /* Reordenando para uma ordem lógica no celular: Foto 1, Texto 1, Foto 2, Texto 2 */
-    .foto-comp-1 { order: 1; }
-    .texto-comp-1 { order: 2; }
-    .foto-comp-2 { order: 3; }
-    .texto-comp-2 { order: 4; }
-    
-    .composition-container {
-        display: flex;
-        flex-direction: column;
-    }
+  /* Reordenando para uma ordem lógica no celular: Foto 1, Texto 1, Foto 2, Texto 2 */
+  .foto-comp-1 {
+    order: 1;
+  }
+  .texto-comp-1 {
+    order: 2;
+  }
+  .foto-comp-2 {
+    order: 3;
+  }
+  .texto-comp-2 {
+    order: 4;
+  }
+
+  .composition-container {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 /* --------------------------------------------------------
@@ -393,47 +426,47 @@ body {
 
 /* --- Contêiner da Foto com Título --- */
 .foto-com-titulo-container {
-    position: relative; /* Essencial para o posicionamento do título sobreposto */
-    width: 100%;
-    border-radius: 0.75rem;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-    overflow: hidden; /* Garante que o título não "vaze" para fora das bordas arredondadas */
+  position: relative; /* Essencial para o posicionamento do título sobreposto */
+  width: 100%;
+  border-radius: 0.75rem;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden; /* Garante que o título não "vaze" para fora das bordas arredondadas */
 }
 
 .foto-com-titulo-container img {
-    width: 100%;
-    height: auto; /* A altura se ajusta para manter a proporção da imagem */
-    display: block; /* Remove espaços extras indesejados */
+  width: 100%;
+  height: auto; /* A altura se ajusta para manter a proporção da imagem */
+  display: block; /* Remove espaços extras indesejados */
 }
 
 /* --- Título Sobreposto à Foto --- */
 .titulo-sobre-foto {
-    position: absolute; /* Permite que o título flutue sobre a imagem */
-    bottom: 0;          /* Alinha na parte inferior da imagem */
-    left: 0;
-    width: 100%;
-    padding: 1.5rem 2rem;
-    
-    /* Gradiente sutil para garantir a legibilidade do texto sobre qualquer foto */
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+  position: absolute; /* Permite que o título flutue sobre a imagem */
+  bottom: 0; /* Alinha na parte inferior da imagem */
+  left: 0;
+  width: 100%;
+  padding: 1.5rem 2rem;
+
+  /* Gradiente sutil para garantir a legibilidade do texto sobre qualquer foto */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 }
 
 .titulo-sobre-foto h2 {
-    font-family: var(--fonte-titulo);
-    color: white;
-    font-size: clamp(2rem, 5vw, 3rem); /* Fonte responsiva */
-    margin: 0;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  font-family: var(--fonte-titulo);
+  color: white;
+  font-size: clamp(2rem, 5vw, 3rem); /* Fonte responsiva */
+  margin: 0;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 /* --- Bloco da Descrição Expandida --- */
 .descricao-expandida {
-    font-family: var(--fonte-texto);
-    font-size: 1.2rem;
-    line-height: 1.8; /* Espaçamento entre linhas para melhor leitura */
-    color: var(--cor-texto);
-    text-align: center;
-    padding: 2rem 0; /* Espaçamento vertical */
+  font-family: var(--fonte-texto);
+  font-size: 1.2rem;
+  line-height: 1.8; /* Espaçamento entre linhas para melhor leitura */
+  color: var(--cor-texto);
+  text-align: center;
+  padding: 2rem 0; /* Espaçamento vertical */
 }
 
 /* --------------------------------------------------------
@@ -443,84 +476,347 @@ body {
 /* --- O "Palco" para as fotos --- */
 /* (Reutilizamos a classe .escada-fotos-container da primeira seção) */
 .escada-fotos-container {
-    position: relative; /* ESSENCIAL: O ponto de referência para as fotos */
-    width: 100%;
-    aspect-ratio: 1 / 1.2; /* Proporção do palco (largura / altura) */
+  position: relative; /* ESSENCIAL: O ponto de referência para as fotos */
+  width: 100%;
+  aspect-ratio: 1 / 1.2; /* Proporção do palco (largura / altura) */
 }
 
 /* --- Estilo Base para as Fotos da Escada Invertida --- */
 .foto-escada-invertida {
-    position: absolute; /* ESSENCIAL: Permite o posicionamento livre e sobreposto */
-    border-radius: 0.75rem;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    transition: transform 0.3s ease;
-    
-    /* Agora a div da foto também é um ponto de referência para o título dentro dela */
-    position: relative;
+  position: absolute; /* ESSENCIAL: Permite o posicionamento livre e sobreposto */
+  border-radius: 0.75rem;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+
+  /* Agora a div da foto também é um ponto de referência para o título dentro dela */
+  position: relative;
 }
 
 .foto-escada-invertida img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .foto-escada-invertida:hover {
-    transform: scale(1.02);
-    z-index: 10 !important; /* Traz a foto para frente ao passar o mouse */
+  transform: scale(1.02);
+  z-index: 10 !important; /* Traz a foto para frente ao passar o mouse */
 }
-
 
 /* --- Posicionamento Individual (A Lógica Correta) --- */
 .foto-escada-3 {
-    /* Foto de Baixo */
-    position: absolute; /* Garante a sobreposição */
-    bottom: 0%;
-    left: 0;
-    width: 70%;
-    height: 65%;
-    z-index: 1; /* Fica atrás */
+  /* Foto de Baixo */
+  position: absolute; /* Garante a sobreposição */
+  bottom: 0%;
+  left: 0;
+  width: 70%;
+  height: 65%;
+  z-index: 1; /* Fica atrás */
 }
 
 .foto-escada-4 {
-    /* Foto de Cima */
-    position: absolute; /* Garante a sobreposição */
-    top: 0;
-    right: 0;
-    width: 80%;
-    height: 60%;
-    z-index: 2; /* Fica na frente */
+  /* Foto de Cima */
+  position: absolute; /* Garante a sobreposição */
+  top: 0;
+  right: 0;
+  width: 80%;
+  height: 60%;
+  z-index: 2; /* Fica na frente */
 }
-
 
 /* --- Títulos Sobrepostos (A Mágica da Legibilidade) --- */
 .titulo-sobreposto {
-    position: absolute; /* Posiciona o título em relação à 'div' da foto */
-    left: 0;
-    width: 100%;
-    padding: 1rem 1.5rem;
-    z-index: 5; /* Garante que o título fique acima da imagem */
-    transition: opacity 0.3s ease; /* Efeito suave de aparição */
+  position: absolute; /* Posiciona o título em relação à 'div' da foto */
+  left: 0;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  z-index: 5; /* Garante que o título fique acima da imagem */
+  transition: opacity 0.3s ease; /* Efeito suave de aparição */
 }
 
 .titulo-sobreposto h2 {
-    font-family: var(--fonte-titulo);
-    color: white;
-    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
-    margin: 0;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  font-family: var(--fonte-titulo);
+  color: white;
+  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 }
 
 /* Modificador para o título que fica no TOPO da imagem */
 .titulo-sobreposto.topo {
-    top: 0;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
+  top: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
 }
 
 /* Modificador para o título que fica na BASE da imagem */
 .titulo-sobreposto.base {
-    bottom: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
-    text-align: right;
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+  text-align: right;
+}
+/* --------------------------------------------------------
+   8. SEÇÃO DIAS ATUAIS (FOTO + VÍDEO)
+   -------------------------------------------------------- */
+
+/* --- Título principal da seção --- */
+.memory-section h2 {
+  font-family: var(--fonte-titulo);
+  color: var(--cor-vinho);
+}
+
+/* --- Contêiner genérico para a mídia (foto ou vídeo) --- */
+.media-container {
+  width: 100%;
+  border-radius: 0.75rem;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  background-color: #e0e0e0;
+
+  /* SUGESTÃO: Adicionar aspect-ratio para consistência visual */
+  aspect-ratio: 3 / 4; /* Proporção de retrato, como uma foto 3x4 */
+}
+
+.media-container img,
+.media-container video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* --- Texto descritivo --- */
+.texto-memoria p {
+  font-family: var(--fonte-texto);
+}
+/* --------------------------------------------------------
+   9. SEÇÃO DE MEMÓRIA SIMPLES (FOTO + TEXTO)
+   -------------------------------------------------------- */
+
+.foto-simples-container {
+  width: 100%;
+  border-radius: 0.75rem; /* Mesmas bordas arredondadas */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); /* Mesma sombra */
+  overflow: hidden;
+  line-height: 0; /* Remove qualquer espaço extra que a imagem possa ter */
+}
+
+.foto-simples-container img {
+  width: 100%;
+  height: auto; /* A altura se ajusta para não distorcer a foto */
+}
+
+/* --------------------------------------------------------
+   10. SEÇÃO FINAL DE HOMENAGEM (COM PARALLAX)
+   -------------------------------------------------------- */
+
+#homenagem-final {
+  position: relative;
+  padding: 6rem 0;
+
+  /* --- Efeito Parallax --- */
+  background-image: url("../img/fotos/foto-honrosa.jpg");
+  background-attachment: fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Camada de sobreposição para legibilidade */
+#homenagem-final::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8));
+  z-index: 1;
+}
+
+/* Garante que o conteúdo fique na frente da camada de sobreposição */
+#homenagem-final .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* Estilo para os textos da homenagem */
+.titulo-homenagem {
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+.titulo-homenagem h2 {
+  font-family: var(--fonte-titulo);
+}
+/* A assinatura da avó usa a classe que já criamos */
+.titulo-homenagem .assinatura {
+  font-family: var(--fonte-detalhe);
+  font-size: 2rem;
+  color: var(--cor-dourado);
+}
+
+/* Ajuste no player para destacar no fundo escuro */
+.final-player {
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* --------------------------------------------------------
+   11. RODAPÉ (FOOTER)
+   - Estilos para a seção de encerramento da página.
+   -------------------------------------------------------- */
+
+.site-footer {
+  background-color: var(
+    --cor-fundo
+  ); /* Usa a cor de fundo principal da página */
+  padding: 5rem 1rem;
+  border-top: 1px solid #ddd; /* Uma linha sutil para separar do conteúdo */
+}
+
+/* Os textos no footer voltam a ter a cor padrão */
+.site-footer .texto-final .lead {
+  color: var(--cor-texto);
+  text-shadow: none;
+}
+
+/* A sua assinatura no footer */
+.site-footer .assinatura {
+  font-family: var(--fonte-detalhe); /* Fonte Cursive que você escolheu */
+  font-size: 2.2rem;
+  color: var(--cor-vinho); /* Cor Vinho para destaque */
+  text-shadow: none;
+  line-height: 1.4; /* Ajusta o espaçamento entre as linhas do seu nome */
+}
+
+/* ========================================================
+   9. MEDIA QUERIES (RESPONSIVIDADE)
+   - Ajustes para garantir que o layout funcione bem em
+     diferentes tamanhos de tela (tablets, celulares, etc.).
+   ======================================================== */
+
+/* --------------------------------------------------------
+   BREAKPOINT 1: TABLETS E DESKTOPS MENORES (até 992px)
+   - Ajustes mais sutis para telas um pouco menores.
+   -------------------------------------------------------- */
+@media (max-width: 992px) {
+  /* --- Ajustes no Header --- */
+  .header-principal {
+    min-height: 100vh; /* Em telas menores, o header volta a ocupar uma tela */
+  }
+  .titulo-superior {
+    font-size: clamp(2.5rem, 10vw, 5rem);
+  }
+  .titulo-inferior {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+  }
+  .fotos-container {
+    height: 55vh; /* Diminui um pouco a altura do palco */
+  }
+
+  /* --- Ajustes na Composição Artística --- */
+  .composition-container {
+    aspect-ratio: 1 / 1.4; /* Deixa o palco um pouco mais alto */
+  }
+}
+
+/* --------------------------------------------------------
+   BREAKPOINT 2: CELULARES (até 767px)
+   - Mudanças mais drásticas para garantir a usabilidade
+     em telas pequenas. O layout se torna majoritariamente vertical.
+   -------------------------------------------------------- */
+@media (max-width: 767px) {
+  /* --- Ajustes Gerais --- */
+  .memory-section {
+    /* Garante que o alinhamento funcione bem quando as colunas empilham */
+    align-items: flex-start;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  /* --- Ajustes no Header --- */
+  .header-principal {
+    padding: 1rem 1rem;
+  }
+  .titulo-superior {
+    top: 5%;
+    font-size: clamp(2.2rem, 12vw, 4rem);
+  }
+  .titulo-inferior {
+    bottom: 5%;
+    font-size: clamp(1.4rem, 6vw, 1.8rem);
+  }
+  .fotos-container {
+    height: 50vh;
+    width: 100vw; /* Ocupa a largura total para mais espaço */
+  }
+  .foto-wrapper {
+    border-width: 3px;
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.2);
+  }
+  .foto-top-left {
+    width: 45vw;
+    height: 60vw;
+    max-width: 180px;
+    max-height: 240px;
+    left: 2%;
+    top: 15%;
+  }
+  .foto-top-right {
+    width: 48vw;
+    height: 64vw;
+    max-width: 190px;
+    max-height: 250px;
+    right: 2%;
+    top: 10%;
+  }
+  .foto-center-bottom {
+    width: 55vw;
+    height: 70vw;
+    max-width: 220px;
+    max-height: 290px;
+    bottom: 10%;
+  }
+
+  /* --- Ajustes na Composição Artística (Escada e Player ao lado) --- */
+  /* Aqui, desfazemos os layouts complexos para um fluxo vertical simples. */
+  .composition-container {
+    aspect-ratio: auto; /* Desliga a proporção fixa */
+    display: flex;
+    flex-direction: column;
+  }
+  .composition-item {
+    position: static; /* ESSENCIAL: Volta ao fluxo normal do documento */
+    width: 100%;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  /* Define a ordem de exibição no celular */
+  .foto-comp-1 {
+    order: 1;
+  }
+  .texto-comp-1 {
+    order: 2;
+  }
+  .foto-comp-2 {
+    order: 3;
+  }
+  .texto-comp-2 {
+    order: 4;
+  }
+
+  /* Ajustes na escada invertida */
+  .escada-fotos-container {
+    min-height: 60vh;
+    margin-bottom: 2rem;
+  }
+  .memory-section .display-5 {
+    font-size: 2rem;
+  }
+
+  /* --- Ajustes na Seção Final (Homenagem) --- */
+  #homenagem-final {
+    /* Desativa o parallax em celulares, pois pode causar problemas de performance
+           e não tem o mesmo efeito visual. A imagem agora rola com a página. */
+    background-attachment: scroll;
+  }
 }
